@@ -6,7 +6,7 @@ version '0.0.1'
 
 project.ext {
     mavGitUrl = 'https://github.com/Railian/Alia.git'
-    mavProjectName = 'aliaalerts'
+    mavProjectName = 'alia-alerts'
     mavLibraryLicenses = ["Apache-2.0":'http://www.apache.org/licenses/LICENSE-2.0.txt']
     mavLibraryDescription = "An Awesome Android library"
     mavPublishToMavenLocal = true
@@ -38,4 +38,4 @@ bintray {
     }
 }
 
-apply from: 'https://raw.githubusercontent.com/sky-uk/gradle-maven-plugin/master/gradle-mavenizer.gradle'
+apply from: '../gradle-mavenizer.gradle'
