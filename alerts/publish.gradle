@@ -1,11 +1,12 @@
+apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-group 'ua.railian.alia.alerts'
-version '0.0.2'
+group 'ua.railian.alia'
+version '0.0.1'
 
 project.ext {
     mavGitUrl = 'https://github.com/Railian/Alia.git'
-    mavProjectName = 'alia'
+    mavProjectName = 'aliaalerts'
     mavLibraryLicenses = ["Apache-2.0":'http://www.apache.org/licenses/LICENSE-2.0.txt']
     mavLibraryDescription = "An Awesome Android library"
     mavPublishToMavenLocal = true
@@ -18,7 +19,7 @@ properties.load(new FileInputStream("local.properties"))
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
-    publications = ['Production']
+    publications = ['mavenPublish']
     configurations = ['archives']
     override = true
     pkg {
