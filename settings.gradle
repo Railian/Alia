@@ -1,2 +1,3 @@
 rootProject.name = "Alia"
 include(":core")
+include(":alerts")
