@@ -5,19 +5,13 @@ plugins {
 }
 
 android {
-
     compileSdkVersion(29)
 
     defaultConfig {
-
-        minSdkVersion(19)
+        minSdkVersion(18)
         targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-
     }
 
     buildTypes {
@@ -29,21 +23,18 @@ android {
             )
         }
     }
-
 }
 
 dependencies {
-    implementation(fileTree("libs") { include("*.jar") })
     implementation(kotlin("stdlib-jdk8"))
 
-    api(project(":core"))
+    api("ua.railian.alia:alia-core:0.0.11-experimental")
 
-    implementation("androidx.core:core-ktx:1.1.0")
+    implementation("androidx.core:core-ktx:1.2.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
 
     testImplementation("junit:junit:4.12")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 }
-
-apply("publish.gradle")
