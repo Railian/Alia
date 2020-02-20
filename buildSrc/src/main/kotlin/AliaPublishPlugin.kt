@@ -22,8 +22,7 @@ open class AliaPublishPluginExtension {
     var groupId: String? = null
     var artifactId: String? = null
     var version: String? = null
-    val bintray: AliaBintrayExtension =
-        AliaBintrayExtension()
+    val bintray = AliaBintrayExtension()
 }
 
 fun AliaPublishPluginExtension.bintray(conf: AliaBintrayExtension.() -> Unit) = conf(bintray)
