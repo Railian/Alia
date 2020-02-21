@@ -8,13 +8,13 @@ The library is published to Alia bintray repository and linked to JCenter.
 
 ### Gradle
 Add dependencies (you can also add other modules that you need):
-```
+```groovy
 dependencies {
     implementation 'ua.railian.alia:alia-core:0.0.12-experimental'
 }
 ```
 Make sure that you have `jcenter()` in the list of repositories:
-```
+```groovy
 repository {
     jcenter()
 }
@@ -22,13 +22,13 @@ repository {
 
 ### Gradle Kotlin DSL
 Add dependencies (you can also add other modules that you need):
-```
+```kotlin
 dependencies {
     implementation("ua.railian.alia:alia-core:0.0.12-experimental")
 }
 ```
 Make sure that you have `jcenter()` in the list of repositories.
-```
+```kotlin
 repository {
     jcenter()
 }
