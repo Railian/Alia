@@ -6,16 +6,6 @@ Now core module is in active development that is why it has experimental suffix 
 
 The library is published to Alia bintray repository and linked to JCenter.
 
-### Maven
-Add dependencies (you can also add other modules that you need):
-```maven
-<dependency>
-  <groupId>ua.railian.alia</groupId>
-  <artifactId>alia-core</artifactId>
-  <version>0.0.12-experimental</version>
-</dependency>
-```
-
 ### Gradle
 Add dependencies (you can also add other modules that you need):
 ```
