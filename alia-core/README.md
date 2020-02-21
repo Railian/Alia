@@ -3,7 +3,7 @@ Now core module is in active development that is why it has experimental suffix 
 
 ## Using in your projects
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0) 
-[ ![Download](https://api.bintray.com/packages/railian/Alia/alia-core/images/download.svg) ](https://bintray.com/railian/Alia/alia-core/_latestVersion)
+[![Download](https://api.bintray.com/packages/railian/Alia/alia-core/images/download.svg)](https://bintray.com/railian/Alia/alia-core/_latestVersion)
 
 The library is published to Alia bintray repository and linked to JCenter.
 
