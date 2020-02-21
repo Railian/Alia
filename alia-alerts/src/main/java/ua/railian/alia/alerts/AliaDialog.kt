@@ -40,8 +40,8 @@ fun dialogUsage(context: Context, activity: AppCompatActivity) {
         setPositiveButton("Sure!", null)
     }
 
-    Alia.ALERTS[activity] show CustomDialogFragment.newInstance(
-        title = "Hello, World!",
-        message = "Are you ready for Alia?"
-    )
+//    Alia.ALERTS[activity] show CustomDialogFragment.newInstance(
+//        title = "Hello, World!",
+//        message = "Are you ready for Alia?"
+//    )
 }
