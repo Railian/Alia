@@ -1,6 +1,7 @@
 package ua.railian.alia.alerts
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -17,7 +18,10 @@ fun notification(
     id: Int = 1,
     builder: NotificationCompat.Builder.() -> Unit
 ) = AlertNotification(channel, id) { context ->
-    NotificationCompat.Builder(context, if  (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) channel.baker(context).id else "").apply(builder).build()
+    NotificationCompat.Builder(
+        context,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) channel.baker(context).id else ""
+    ).apply(builder).build()
 }
 
 class AlertNotification(
@@ -39,16 +43,15 @@ infix fun AliaContextAlerts.show(notification: AlertNotification): Notification 
 fun notificationChannel(
     id: String,
     builder: NotificationChannel.() -> Unit = {}
-): AliaNotificationChannel =
-    AliaNotificationChannel {
-        NotificationChannel(
-            id,
-            id,
-            NotificationManager.IMPORTANCE_DEFAULT
-        ).apply(builder)
-    }
+): AliaNotificationChannel = AliaNotificationChannel {
+    @Suppress("NewApi") NotificationChannel(
+        id,
+        id,
+        NotificationManager.IMPORTANCE_DEFAULT
+    ).apply(builder)
+}
 
-class AliaNotificationChannel(val baker: (Context) -> NotificationChannel)
+class AliaNotificationChannel(@TargetApi(26) val baker: (Context) -> NotificationChannel)
 
 @RequiresApi(Build.VERSION_CODES.O)
 object NotificationChannels {
@@ -65,14 +68,18 @@ object NotificationChannels {
 }
 
 infix fun AliaContextAlerts.make(channel: AliaNotificationChannel): NotificationChannel? =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { channel.baker.invoke(context)} else null
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        channel.baker.invoke(context)
+    } else null
 
 infix fun AliaContextAlerts.createOrUpdate(channel: AliaNotificationChannel): NotificationChannel? =
     make(channel)?.apply { NotificationManagerCompat.from(context).createNotificationChannel(this) }
 
 @SuppressLint("NewApi")
 infix fun AliaContextAlerts.delete(channel: AliaNotificationChannel): NotificationChannel? =
-    make(channel)?.apply { NotificationManagerCompat.from(context).deleteNotificationChannel(this.id) }
+    make(channel)?.apply {
+        NotificationManagerCompat.from(context).deleteNotificationChannel(this.id)
+    }
 
 fun notificationUsage(context: Context, activity: AppCompatActivity) {
 
