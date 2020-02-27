@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:4.0.0-alpha09")
+    implementation("com.android.tools.build:gradle:4.0.0-beta01")
     implementation("com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4")
 }
 
