@@ -9,7 +9,23 @@ class AliaDiffUtil<ITEM : Any>(
     private val areContentTheSame: (old: ITEM, new: ITEM) -> Boolean
 ) : Alia.Element {
 
-    fun create(oldItems: List<ITEM>, newItems: List<ITEM>) = object : DiffUtil.Callback() {
+    class Builder<ITEM : Any> {
+
+        var areItemsTheSame: (old: ITEM, new: ITEM) -> Boolean = { _, _ -> false }
+        var areContentTheSame: (old: ITEM, new: ITEM) -> Boolean = { old, new -> old == new }
+
+        fun areItemsTheSame(block: (old: ITEM, new: ITEM) -> Boolean) {
+            areItemsTheSame = block
+        }
+
+        fun areContentTheSame(block: (old: ITEM, new: ITEM) -> Boolean) {
+            areContentTheSame = block
+        }
+
+        fun build() = AliaDiffUtil(areItemsTheSame, areContentTheSame)
+    }
+
+    fun createCallback(oldItems: List<ITEM>, newItems: List<ITEM>) = object : DiffUtil.Callback() {
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
             areItemsTheSame(oldItems[oldItemPosition], newItems[newItemPosition])
@@ -23,6 +39,5 @@ class AliaDiffUtil<ITEM : Any>(
 }
 
 inline fun <reified ITEM : Any> AliaAdapterBuilder<in ITEM>.diffUtil(
-    noinline areContentTheSame: (old: ITEM, new: ITEM) -> Boolean = { old, new -> old == new },
-    noinline areItemsTheSame: (old: ITEM, new: ITEM) -> Boolean
-) = AliaDiffUtil(areItemsTheSame, areContentTheSame)
+    noinline builder: AliaDiffUtil.Builder<ITEM>.() -> Unit
+) = AliaDiffUtil.Builder<ITEM>().apply(builder).build()

@@ -19,7 +19,7 @@ class AliaRecyclerViewAdapter<ITEM : Any>(
 
     var items: List<ITEM> by Delegates.observable(initialItems) { _, oldItems, newItems ->
         if (aliaDiffUtil != null) {
-            DiffUtil.calculateDiff(aliaDiffUtil.create(oldItems, newItems), true)
+            DiffUtil.calculateDiff(aliaDiffUtil.createCallback(oldItems, newItems), true)
                 .dispatchUpdatesTo(this)
         } else notifyDataSetChanged()
     }
